@@ -1,0 +1,87 @@
+/* Reset básico e Fontes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-principal: Orbitron;
+    --font-strong: 800;
+}
+
+body,html{
+    overflow-x: hidden;
+}
+
+body{
+    overflow-y: hidden;
+}
+
+/* Estilos do Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    opacity: 0; /* Escondido inicialmente para a animação do GSAP */
+}
+
+.porsche-crest {
+    width: clamp(64px,24vw,240px); /* Ajuste conforme o tamanho real da sua imagem cortada */
+    height: auto;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.porsche-text {
+    display: flex;
+    font-size:clamp(2rem,10vw,6rem);
+    font-weight: 900; /* Fonte grossa e imponente */
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    overflow: hidden; /* Essencial para o efeito de "deslizamento" do GSAP */
+    line-height: 1;
+    font-family: Orbitron;
+}
+
+.text-pre {
+    display: inline-block;
+    transform: translateY(100%); /* Começa abaixo de sua posição original */
+    opacity: 0;
+}
+
+/* Cores baseadas na image_6ec0dc.png */
+.pre-black {
+    color: #111111; 
+}
+
+.pre-red {
+    color: #8E2323; /* Vermelho escuro esportivo */
+}
+
+/* Estilos de Exemplo do Conteúdo Principal */
+.main-content {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+}
+
+.main-content h1 {
+    color: #333;
+    font-weight: 300;
+}
