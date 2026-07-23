@@ -248,18 +248,19 @@ body{
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: clamp(6px, 1vw, 15px);
     background-color: var(--porsche-gold);
     color: var(--text-dark);
     text-decoration: none;
-    padding: 1rem 4rem;
+    padding: clamp(0.5rem, 1vw, 1rem) clamp(1.5rem, 3vw, 4rem);
     border-radius: 70px;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: clamp(0.7rem, 1.2vw, 1.2rem);
     transition: all 0.7s ease;
     border: none;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
+    max-width: 90vw;
 }
 
 .btn-secondary:hover {
@@ -274,7 +275,7 @@ body{
 }
 
 .btn-icon {
-    width: 42px;/* Deixa o logo preto, se for SVG colorido */
+    width: clamp(18px, 2.5vw, 42px);
     transition: 0.7s ease;
 }
 
@@ -313,4 +314,20 @@ body{
     
     .text-box { margin-top: 2rem; }
     .hero-title { font-size: 2.5rem; }
+    .btn-secondary {
+        gap: 8px;
+        padding: 0.5rem 1.4rem;
+        font-size: 0.8rem;
+    }
+    .btn-icon { width: 20px; }
+}
+
+@media (max-width: 480px) {
+    .btn-secondary {
+        gap: 6px;
+        padding: 0.4rem 1rem;
+        font-size: 0.75rem;
+        border-radius: 50px;
+    }
+    .btn-icon { width: 16px; }
 }
