@@ -24,10 +24,49 @@
         </div>
     </div>
 
-    <!-- Conteúdo Principal da sua página -->
     <main class="main-content">
-        <h1>O conteúdo do seu site começa aqui.</h1>
-    </main>
+        
+        <!-- Header -->
+        <header class="site-header">
+            <div class="logo-area">
+                <img src="Assets/Logo.svg" alt="Porsche Logo" class="header-crest">
+                <span class="header-brand">POR<span class="text-red">SCHE</span></span>
+            </div>
+            <nav class="nav-area">
+                <a href="#" class="nav-link">Conheça nossos carros</a>
+                <a href="#" class="btn-primary">Entre em contato</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <!-- Fundo futurista -->
+            <div class="hero-bg"></div> 
+            
+            <!-- Faixas vermelhas animadas -->
+            <div class="stripes-wrapper">
+                <div class="stripe left-stripe"></div>
+                <div class="stripe right-stripe"></div>
+            </div>
+
+            <!-- Container do Carro -->
+            <div class="car-wrapper">
+                <!-- Substitua pelo PNG do carro recortado (visto de cima) -->
+                <img src="Assets/Porsche_Hero.webp" alt="Porsche 911" class="hero-car">
+            </div>
+
+            <!-- Conteúdo de Texto -->
+            <div class="hero-content">
+                <div class="text-box">
+                    <h1 class="hero-title">O luxo em sua<br>forma mais<br>veloz</h1>
+                    <p class="hero-desc">Mais do que um carro, um símbolo de status, inovação e personalidade. Entre no universo Porsche e sinta o prazer de dirigir algo extraordinário.</p>
+                    <a href="#" class="btn-secondary">
+                        Explorar modelos 
+                        <img src="Assets/Logo.svg" alt="Ícone" class="btn-icon">
+                    </a>
+                </div>
+            </div>
+        </section>
 
     <!-- Importação do GSAP -->
    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
