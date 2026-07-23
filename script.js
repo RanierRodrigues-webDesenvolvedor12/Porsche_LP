@@ -75,9 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Anima as faixas vermelhas (height 0 -> 100%)
     .to(".stripe", {
         height: "100%",
-        duration: 1.2,
+        duration: 1.5,
         ease: "power4.inOut",
-        stagger: 0.15 // Uma desce um tiquinho depois da outra
+        stagger: 0.3 // Uma desce um tiquinho depois da outra
     }, "-=0.8")
 
     // O carro entra de cima para baixo
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, "-=0.8")
 
     // Revela a descrição e o botão
-    .from(".hero-desc, .btn-secondary", {
+    .from(".hero-desc", {
         opacity: 0,
         y: 30,
         duration: 0.8,
