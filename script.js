@@ -8,6 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
         scale: 0.98, 
         opacity: 0 
     });
+    gsap.set(".btn-secondary", { 
+        opacity: 0, 
+        y: 60 
+    });
 
     // 3. Prepara os textos para a animação ANTES de iniciar a Timeline
     const splitPreloader = new SplitText(".porsche-text h2", { type: "chars" });
@@ -104,5 +108,11 @@ document.addEventListener("DOMContentLoaded", () => {
         duration: 0.8,
         stagger: 0.2,
         ease: "power2.out"
-    }, "-=0.4");
+    }, "-=0.4")
+
+    .to(".btn-secondary",{
+        opacity: 1,
+        duration:0.4,
+        ease: "power3"
+    }, "-=0.1")
 });
