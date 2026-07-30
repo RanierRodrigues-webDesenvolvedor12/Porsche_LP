@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Porsche Premium Preloader</title>
+    <title>Porsche Premium Experience</title>
     <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Container do Preloader -->
+    <!-- ================== PRELOADER ================== -->
     <div id="preloader">
         <div class="brand-container">
-            <!-- Substitua o src pelo caminho do brasão (escudo) recortado da sua imagem -->
             <img src="Assets/Logo.svg" alt="Porsche Crest" class="porsche-crest">
-            
             <div class="porsche-text">
-              <h2 class="pre-black" id="text-pre">POR<span class="pre-red">SCHE</span></h2>
+                <h2 class="pre-black" id="text-pre">POR<span class="pre-red">SCHE</span></h2>
             </div>
         </div>
     </div>
 
+    <!-- ================== CONTEÚDO PRINCIPAL ================== -->
     <main class="main-content">
         
         <!-- Header -->
@@ -33,34 +32,29 @@
                 <span class="header-brand">POR<span class="text-red">SCHE</span></span>
             </div>
             <nav class="nav-area">
-                <a href="#" class="nav-link">Conheça nossos carros</a>
+                <a href="#showroom" class="nav-link">Conheça nossos carros</a>
                 <a href="#" class="btn-primary">Entre em contato</a>
             </nav>
         </header>
 
         <!-- Hero Section -->
         <section class="hero">
-            <!-- Fundo futurista -->
             <div class="hero-bg"></div> 
             
-            <!-- Faixas vermelhas animadas -->
             <div class="stripes-wrapper">
                 <div class="stripe left-stripe"></div>
                 <div class="stripe right-stripe"></div>
             </div>
 
-            <!-- Container do Carro -->
             <div class="car-wrapper">
-                <!-- Substitua pelo PNG do carro recortado (visto de cima) -->
                 <img src="Assets/Porsche_Hero.webp" alt="Porsche 911" class="hero-car">
             </div>
 
-            <!-- Conteúdo de Texto -->
             <div class="hero-content">
                 <div class="text-box">
                     <h1 class="hero-title">O luxo em sua<br>forma mais<br>veloz</h1>
                     <p class="hero-desc">Mais do que um carro, um símbolo de status, inovação e personalidade. Entre no universo Porsche e sinta o prazer de dirigir algo extraordinário.</p>
-                    <a href="#" class="btn-secondary">
+                    <a href="#showroom" class="btn-secondary">
                         Explorar modelos 
                         <img src="Assets/Logo.svg" alt="Ícone" class="btn-icon">
                     </a>
@@ -68,13 +62,66 @@
             </div>
         </section>
 
-    <!-- Importação do GSAP -->
-   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+        <!-- ================== NOVA SEÇÃO: SHOWROOM ================== -->
+        <section class="showroom" id="showroom">
+            <!-- Fundo fluido/metálico idêntico à imagem -->
+            <div class="showroom-bg"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
-<!-- ScrollSmoother requires ScrollTrigger -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollSmoother.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js"></script>
+            <div class="showroom-header">
+                <div class="brand-top">
+                    <img src="Assets/Logo.svg" alt="Crest" class="sm-crest">
+                    <span class="sm-brand">POR<span class="showroom-brand-red">SCHE</span></span>
+                </div>
+                <p class="showroom-subtitle">Conheça nossos modelos de carro mais famosos</p>
+            </div>
+
+            <!-- Título do Carro Selecionado -->
+            <div class="car-title-container">
+                <h2 id="showroom-title">Porsche 911</h2>
+            </div>
+
+            <!-- Stage de Apresentação e Seletores -->
+           <!-- Stage de Apresentação e Seletores -->
+<div class="showroom-stage">
+    <!-- Barra de Miniaturas Lateral (Esquerda) -->
+    <div class="car-selector">
+        <div class="thumb-item active" data-index="0">
+            <img src="Assets/porsche_branca.webp" alt="Porsche Branco">
+        </div>
+        <div class="thumb-item" data-index="1">
+            <img src="Assets/porsche_cobre.webp" alt="Porsche Cobre">
+        </div>
+        <div class="thumb-item" data-index="2">
+            <img src="Assets/porsche_rosa.webp" alt="Porsche Rosa">
+        </div>
+        <div class="thumb-item" data-index="3">
+            <img src="Assets/porsche_vermelha.webp" alt="Porsche Vermelho Escuro">
+        </div>
+    </div>
+
+    <!-- Imagem Principal (Carro Destacado ao Centro/Direita) -->
+    <div class="main-car-display">
+        <img id="showroom-main-img" src="Assets/porsche_branca.webp" alt="Porsche Selecionado">
+    </div>
+</div>
+
+            <!-- Caixa de Descrição com Barras Verticais -->
+            <div class="showroom-info">
+                <div class="info-line"></div>
+                <p id="showroom-desc">
+                    O Porsche 911 é um ícone automotivo que une tradição, luxo e alta performance em um design inconfundível. Reconhecido pela sua engenharia precisa e dirigibilidade marcante, ele oferece uma experiência única para quem busca esportividade, sofisticação e exclusividade em cada detalhe.
+                </p>
+                <div class="info-line"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Importação do GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollSmoother.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js"></script>
 
     <script src="script.js"></script>
 </body>
