@@ -8,24 +8,28 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Porsche 911",
             image: "Assets/porsche_branca.webp",
             color: "#8E2323",
+            bg: "#f5f0ea",
             desc: "O Porsche 911 é um ícone automotivo que une tradição, luxo e alta performance em um design inconfundível. Reconhecido pela sua engenharia precisa e dirigibilidade marcante, ele oferece uma experiência única para quem busca esportividade, sofisticação e exclusividade em cada detalhe."
         },
         {
             title: "911 Carrera",
             image: "Assets/carro_cobre.webp",
             color: "#C68B59",
+            bg: "#efe3d4",
             desc: "Sofisticação de ponta a ponta com o DNA das pistas. O 911 Carrera em tom cobre metálico entrega uma presença visual incomparável, combinada com o icônico motor boxer biturbo de alta rotação para uma resposta instantânea do acelerador."
         },
         {
             title: "911 GT3 RS",
             image: "Assets/carro_rosa.webp",
             color: "#D12B71",
+            bg: "#fce8ef",
             desc: "Nascido nas pistas de corrida de endurance para desafiar limites na rua. Com aerodinâmica extrema, redução máxima de peso e uma postura inconfundivelmente agressiva, este modelo foi concebido para o puro êxtase da pilotagem."
         },
         {
             title: "911 Turbo S",
             image: "Assets/carro_vermelho.webp",
             color: "#6B1414",
+            bg: "#8E2323",
             desc: "O epítome do desempenho sem comprometer o conforto diário. Com tração integral e números de aceleração de tirar o fôlego, o Turbo S representa a engenharia alemã em seu estado mais soberano e intimidador."
         }
     ];
@@ -168,6 +172,13 @@ document.addEventListener("DOMContentLoaded", () => {
             // 3. Muda a cor de destaque (CSS Variables)
             gsap.to(":root", {
                 "--accent-color": car.color,
+                duration: 0.6,
+                ease: "power2.out"
+            });
+
+            // 3b. Muda a cor de fundo da seção showroom
+            gsap.to(".showroom-bg", {
+                backgroundColor: car.bg,
                 duration: 0.6,
                 ease: "power2.out"
             });
