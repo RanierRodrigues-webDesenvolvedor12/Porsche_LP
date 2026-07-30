@@ -9,8 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         opacity: 0 
     });
     gsap.set(".btn-secondary", { 
-        opacity: 0, 
-        y: 60 
+        opacity: 0,
     });
 
     // 3. Prepara os textos para a animação ANTES de iniciar a Timeline
