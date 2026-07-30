@@ -12,19 +12,19 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             title: "911 Carrera",
-            image: "Assets/porsche_cobre.webp",
+            image: "Assets/carro_cobre.webp",
             color: "#C68B59",
             desc: "Sofisticação de ponta a ponta com o DNA das pistas. O 911 Carrera em tom cobre metálico entrega uma presença visual incomparável, combinada com o icônico motor boxer biturbo de alta rotação para uma resposta instantânea do acelerador."
         },
         {
             title: "911 GT3 RS",
-            image: "Assets/porsche_rosa.webp",
+            image: "Assets/carro_rosa.webp",
             color: "#D12B71",
             desc: "Nascido nas pistas de corrida de endurance para desafiar limites na rua. Com aerodinâmica extrema, redução máxima de peso e uma postura inconfundivelmente agressiva, este modelo foi concebido para o puro êxtase da pilotagem."
         },
         {
             title: "911 Turbo S",
-            image: "Assets/porsche_vermelha.webp",
+            image: "Assets/carro_vermelho.webp",
             color: "#6B1414",
             desc: "O epítome do desempenho sem comprometer o conforto diário. Com tração integral e números de aceleração de tirar o fôlego, o Turbo S representa a engenharia alemã em seu estado mais soberano e intimidador."
         }
