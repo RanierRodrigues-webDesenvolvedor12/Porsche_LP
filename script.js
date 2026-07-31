@@ -129,9 +129,49 @@ document.addEventListener("DOMContentLoaded", () => {
       }, "-=0.1");
 
     /* ========================================================
-       FASE 3: ANIMAÇÃO DE SCROLL (SHOWROOM)
+       FASE 3: ANIMAÇÕES DE SCROLL (HERO + SHOWROOM)
        ======================================================== */
+
+    // HERO: parallax de scroll — faixas vermelhas encolhem até 0% e o carro desce
+    function initHeroScrollAnimation() {
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: 1
+            }
+        })
+            .to(".stripe", {
+                scaleY: 0,
+                transformOrigin: "top",
+                ease: "none",
+                duration: 1
+            }, 0)
+            .to(".car-wrapper", {
+                y: "70vh",
+                scale: 0.9,
+                opacity: 0.4,
+                ease: "none",
+                duration: 1
+            }, 0)
+            .to(".hero-content", {
+                y: -80,
+                opacity: 0,
+                ease: "none",
+                duration: 1
+            }, 0)
+            .to(".hero-bg", {
+                scale: 1.15,
+                ease: "none",
+                duration: 1
+            }, 0);
+    }
+
+    // SHOWROOM: entrada dos elementos ao alcançar a seção
     function initScrollAnimations() {
+        initHeroScrollAnimation();
+
         const showroomTl = gsap.timeline({
             scrollTrigger: {
                 trigger: ".showroom",
