@@ -300,7 +300,7 @@ body {
 .showroom {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    min-height: 105vh;
     padding: 6rem 5% 4rem 5%;
     display: flex;
     flex-direction: column;
@@ -477,6 +477,292 @@ body {
     font-weight: 500;
 }
 
+/* ================== FOOTER ================== */
+.site-footer {
+    position: relative;
+    z-index: 2;
+    background-color: #0d0d0d;
+    background-image: radial-gradient(circle at 50% 0%, rgba(152,34,34,0.14) 0%, transparent 55%);
+    color: #fff;
+    padding: 5rem 5% 2rem;
+    overflow: hidden;
+    padding-top: 20rem;
+}
+
+.footer-line {
+    position: absolute;
+    top: 0;
+    left: 5%;
+    width: 90%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--porsche-gold), transparent);
+    transform: scaleX(0);
+    transform-origin: center;
+}
+
+/* CTA do rodapé */
+.footer-cta {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 1rem 0 3rem;
+}
+
+.footer-cta-label {
+    font-family: var(--font-principal);
+    font-size: clamp(0.7rem, 1.2vw, 1rem);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--porsche-gold);
+    margin-bottom: 1.2rem;
+}
+
+.footer-cta-title {
+    font-family: var(--font-principal);
+    font-weight: 900;
+    font-size: clamp(1.6rem, 5vw, 4rem);
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+    margin-bottom: 2.2rem;
+    overflow: hidden;
+}
+
+.footer-cta-title .text-red { color: var(--porsche-red); }
+
+.btn-footer {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 1rem 2.6rem;
+    background-color: var(--porsche-red);
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--font-secundaria);
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: clamp(0.72rem, 1.2vw, 1rem);
+    border-radius: 60px;
+    overflow: hidden;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+    will-change: transform;
+}
+
+.btn-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.6s ease;
+}
+
+.btn-footer:hover {
+    background-color: #7a1b1b;
+    box-shadow: 0 12px 30px rgba(152,34,34,0.35);
+}
+
+.btn-footer:hover::before { left: 125%; }
+
+.btn-footer .btn-icon {
+    width: 22px;
+    transition: transform 0.5s ease;
+}
+
+.btn-footer:hover .btn-icon {
+    transform: translateX(8px) rotate(360deg);
+}
+
+/* Texto gigante de fundo */
+.footer-giant {
+    position: relative;
+    z-index: 1;
+    margin: 1rem 0 2rem;
+    text-align: center;
+    pointer-events: none;
+    user-select: none;
+}
+
+.giant-text {
+    font-family: var(--font-principal);
+    font-weight: 900;
+    font-size: clamp(3rem, 15vw, 18rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.16);
+    background-image: linear-gradient(180deg, transparent 0%, transparent 50%, #8a6a3a 54%, #C6A371 68%, #f0d9a8 78%, #C6A371 88%, #8a6a3a 96%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-size: 100% 200%;
+    background-repeat: no-repeat;
+    background-position: 0% 0%;
+}
+
+.giant-red {
+    -webkit-text-stroke: 1px rgba(152,34,34,0.55);
+    background-image: linear-gradient(180deg, transparent 0%, transparent 50%, #5c1212 54%, #982222 68%, #d04848 80%, #982222 90%, #5c1212 96%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-size: 100% 200%;
+    background-repeat: no-repeat;
+    background-position: 0% 0%;
+}
+
+/* Colunas principais */
+.footer-main {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
+    gap: 2.5rem;
+    padding: 3rem 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-brand-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.2rem;
+}
+
+.footer-crest {
+    width: 34px;
+}
+
+.footer-brand-name {
+    font-family: var(--font-principal);
+    font-weight: 900;
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+}
+
+.footer-brand-desc {
+    font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    max-width: 320px;
+    margin-bottom: 1.6rem;
+}
+
+.footer-social {
+    display: flex;
+    gap: 0.9rem;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 50%;
+    color: #fff;
+    transition: border-color 0.4s ease, background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.social-icon:hover {
+    background-color: var(--porsche-red);
+    border-color: var(--porsche-red);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(152,34,34,0.35);
+}
+
+.footer-col-title {
+    font-family: var(--font-principal);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--porsche-gold);
+    margin-bottom: 1.4rem;
+}
+
+.footer-col a {
+    position: relative;
+    display: block;
+    width: fit-content;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: clamp(0.82rem, 1.1vw, 0.95rem);
+    padding: 0.3rem 0;
+    transition: color 0.3s ease;
+}
+
+.footer-col a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--porsche-gold);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease;
+}
+
+.footer-col a:hover {
+    color: #fff;
+}
+
+.footer-col a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Barra inferior */
+.footer-bottom {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1.5rem 0 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+}
+
+.footer-top {
+    display: inline-flex;
+    align-items: center;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-family: var(--font-principal);
+    font-weight: 900;
+    font-size: 1.15rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-top-crest {
+    width: 28px;
+    transition: transform 0.5s ease;
+}
+
+.footer-top:hover {
+    color: var(--porsche-gold);
+    transform: translateY(-2px);
+}
+
+.footer-top:hover .footer-top-crest {
+    transform: rotate(360deg);
+}
+
 /* ================== RESPONSIVIDADE ================== */
 @media (max-width: 1024px) {
     .hero-title { font-size: 3rem; }
@@ -501,6 +787,12 @@ body {
     .main-car-display {
         padding: 0;
         max-width: 80%;
+    }
+
+    /* Footer Responsivo */
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
     }
 }
 
@@ -541,6 +833,19 @@ body {
     #showroom-desc {
         text-align: center;
     }
+
+    /* Footer Responsivo */
+    .site-footer { padding: 4rem 5% 1.5rem; }
+    .footer-main {
+        grid-template-columns: 1fr;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+    }
+    .footer-cta-title { font-size: clamp(1.5rem, 6vw, 2.4rem); }
+    .giant-text { font-size: clamp(2.4rem, 12vw, 6rem); letter-spacing: 1px; }
 }
 
 @media (max-width: 480px) {

@@ -168,9 +168,105 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 0);
     }
 
+    // FOOTER: entrada dos elementos + parallax do texto gigante + interações
+    function initFooterAnimations() {
+        // Título do CTA pré-dividido para o reveal letra a letra (sem flash)
+        const ctaSplit = new SplitText(".footer-cta-title", { type: "chars" });
+        gsap.set(ctaSplit.chars, { yPercent: 110, opacity: 0, force3D: true });
+
+        const footerTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".site-footer",
+                start: "top 85%",
+                toggleActions: "play none none none"
+            }
+        });
+
+        footerTl
+            .to(".footer-line", { scaleX: 1, duration: 1, ease: "power3.out" })
+            .from(".footer-cta-label", { y: 20, opacity: 0, duration: 0.6, ease: "power3.out" }, "-=0.7")
+            .to(ctaSplit.chars, {
+                yPercent: 0,
+                opacity: 1,
+                duration: 0.7,
+                stagger: 0.03,
+                ease: "power3.out"
+            }, "-=0.4")
+            .from(".btn-footer", { scale: 0.8, opacity: 0, duration: 0.55, ease: "back.out(1.6)" }, "-=0.3")
+            .from(".footer-brand", { y: 40, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.2")
+            .from(".footer-col", { y: 40, opacity: 0, duration: 0.7, stagger: 0.12, ease: "power3.out" }, "-=0.6")
+            .from(".social-icon", { scale: 0, opacity: 0, duration: 0.4, stagger: 0.08, ease: "back.out(1.7)" }, "-=0.5")
+            .from(".footer-bottom", { y: 20, opacity: 0, duration: 0.6, ease: "power3.out" }, "-=0.3");
+
+        // Parallax do texto gigante: surge por baixo e desliza conforme o scroll
+        gsap.fromTo(".giant-text",
+            { yPercent: 55 },
+            {
+                yPercent: -12,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".site-footer",
+                    start: "top bottom",
+                    end: "bottom bottom",
+                    scrub: 1
+                }
+            }
+        );
+
+        // Preenchimento das letras: vinculado ao scroll (preenche ao entrar, despreenche ao sair)
+        gsap.fromTo(".giant-text, .giant-red",
+            { backgroundPosition: "0% 0%" },
+            {
+                backgroundPosition: "0% 100%",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".footer-giant",
+                    start: "top 90%",
+                    end: "center 50%",
+                    scrub: 1
+                }
+            }
+        );
+
+        // Botão magnético (test drive)
+        const footerBtn = document.querySelector(".btn-footer");
+        if (footerBtn) {
+            footerBtn.addEventListener("mousemove", (e) => {
+                const rect = footerBtn.getBoundingClientRect();
+                const relX = e.clientX - rect.left - rect.width / 2;
+                const relY = e.clientY - rect.top - rect.height / 2;
+                gsap.to(footerBtn, {
+                    x: relX * 0.35,
+                    y: relY * 0.35,
+                    duration: 0.4,
+                    ease: "power3.out"
+                });
+            });
+            footerBtn.addEventListener("mouseleave", () => {
+                gsap.to(footerBtn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.6,
+                    ease: "elastic.out(1, 0.4)"
+                });
+            });
+        }
+
+        // Voltar ao topo (hero)
+        const footerTop = document.querySelector(".footer-top");
+        const heroSection = document.querySelector("#hero");
+        if (footerTop && heroSection) {
+            footerTop.addEventListener("click", (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: heroSection.offsetTop, behavior: "smooth" });
+            });
+        }
+    }
+
     // SHOWROOM: entrada dos elementos ao alcançar a seção
     function initScrollAnimations() {
         initHeroScrollAnimation();
+        initFooterAnimations();
 
         const showroomTl = gsap.timeline({
             scrollTrigger: {
