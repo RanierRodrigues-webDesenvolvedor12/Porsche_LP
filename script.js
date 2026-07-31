@@ -14,15 +14,15 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             title: "911 Carrera",
             image: "Assets/carro_cobre.webp",
-            color: "#C68B59",
-            bg: "#efe3d4",
+            color: "#af5200",
+            bg: "#C68B59",
             desc: "Sofisticação de ponta a ponta com o DNA das pistas. O 911 Carrera em tom cobre metálico entrega uma presença visual incomparável, combinada com o icônico motor boxer biturbo de alta rotação para uma resposta instantânea do acelerador."
         },
         {
             title: "911 GT3 RS",
             image: "Assets/carro_rosa.webp",
             color: "#D12B71",
-            bg: "#fce8ef",
+            bg: "#D12B71",
             desc: "Nascido nas pistas de corrida de endurance para desafiar limites na rua. Com aerodinâmica extrema, redução máxima de peso e uma postura inconfundivelmente agressiva, este modelo foi concebido para o puro êxtase da pilotagem."
         },
         {
@@ -37,6 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. Estados Iniciais (GSAP)
     gsap.set(".main-content", { y: "10vh", scale: 0.98, opacity: 0 });
     gsap.set(".btn-secondary", { opacity: 0 });
+
+    // Estado inicial das bordas verticais (info-line): 0% de altura
+    const isMobileLines = () => window.matchMedia("(max-width: 768px)").matches;
+    const infoAxis = () => (isMobileLines() ? "scaleX" : "scaleY");
+    gsap.set(".info-line", { [infoAxis()]: 0, transformOrigin: "center" });
 
     const splitPreloader = new SplitText(".porsche-text h2", { type: "chars" });
     const splitHeroTitle = new SplitText(".hero-title", { type: "words,chars" });
@@ -132,20 +137,21 @@ document.addEventListener("DOMContentLoaded", () => {
                 trigger: ".showroom",
                 start: "top 75%",
                 end: "top 30%",
-                toggleActions: "play none none none" // Alterado para não reverter e travar elementos no scroll back
+                toggleActions: "play none none none" // Não reverte ao scrollar para trás
             }
         });
 
         showroomTl
             .from(".showroom-header", { y: 40, opacity: 0, duration: 0.8, ease: "power3.out" })
-            .from("#showroom-title", { y: 60, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.5")
+            .add(() => animateTitle(), "-=0.4")
             .from("#showroom-main-img", { x: 80, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.6")
             .from(".thumb-item", { x: -30, opacity: 0, duration: 0.5, stagger: 0.1, ease: "power2.out", clearProps: "all" }, "-=0.8")
-            .from(".showroom-info", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.4");
+            .from(".showroom-info", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.4")
+            .add(() => infoLinesTween(1), "-=0.5");
     }
 
     /* ========================================================
-       FASE 4: INTERATIVIDADE SHOWROOM (CORRIGIDO ANTI-BUG)
+       FASE 4: INTERATIVIDADE SHOWROOM (ANIMAÇÕES PROFISSIONAIS)
        ======================================================== */
     const thumbItems = document.querySelectorAll(".thumb-item");
     const mainImg = document.getElementById("showroom-main-img");
@@ -153,6 +159,44 @@ document.addEventListener("DOMContentLoaded", () => {
     const descEl = document.getElementById("showroom-desc");
 
     let isAnimating = false;
+    let titleSplit = null;
+
+    // Bordas verticais da descrição: 0% -> 100% de altura
+    function infoLinesTween(target) {
+        const entering = target === 1;
+        return gsap.to(".info-line", {
+            [infoAxis()]: target,
+            duration: entering ? 0.7 : 0.2,
+            ease: entering ? "power3.out" : "power2.in",
+            stagger: entering ? 0.14 : 0.04,
+            transformOrigin: "center",
+            overwrite: true
+        });
+    }
+
+    // Título com SplitText: letra por letra surgindo de baixo para cima
+    function animateTitle(text) {
+        const targetText = typeof text === "string" ? text : titleEl.textContent;
+
+        if (titleSplit) {
+            titleSplit.revert();
+            titleSplit = null;
+        }
+
+        titleEl.textContent = targetText;
+        gsap.set(titleEl, { opacity: 1, y: 0, clearProps: "transform,opacity" });
+
+        titleSplit = new SplitText(titleEl, { type: "chars" });
+        gsap.set(titleSplit.chars, { yPercent: 120, opacity: 0, force3D: true });
+
+        return gsap.to(titleSplit.chars, {
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.75,
+            stagger: 0.04,
+            ease: "power4.out"
+        });
+    }
 
     thumbItems.forEach((thumb) => {
         thumb.addEventListener("click", () => {
@@ -183,7 +227,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ease: "power2.out"
             });
 
-            // 4. Timeline com fromTo para GARANTIR que nada permaneça oculto
+            // 4. Timeline principal da troca (saída -> swap -> entrada)
             const changeTl = gsap.timeline({
                 onComplete: () => {
                     isAnimating = false;
@@ -191,44 +235,44 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             changeTl
-                // Esconde rapidamente os elementos atuais
-                .to([mainImg, titleEl, descEl], {
-                    opacity: 0,
-                    y: 10,
-                    duration: 0.25,
-                    stagger: 0.03,
-                    ease: "power2.in"
-                })
-                // Troca as fontes de dados via JavaScript
+                // SAÍDA: recolhe elementos atuais (título, imagem, descrição e bordas)
+                .to(titleEl, { opacity: 0, y: -12, duration: 0.22, ease: "power2.in" }, 0)
+                .to([mainImg, descEl], { opacity: 0, y: -8, duration: 0.22, stagger: 0.03, ease: "power2.in" }, 0)
+                .add(() => infoLinesTween(0), 0)
+
+                // TROCA: atualiza fontes de dados via JavaScript
                 .add(() => {
                     mainImg.src = car.image;
-                    titleEl.textContent = car.title;
                     descEl.textContent = car.desc;
-                })
-                // Entra com a imagem garantindo opacity: 1 no final e limpando props de GPU
-                .fromTo(mainImg, 
-                    { opacity: 0, x: 30, y: 0 },
-                    { 
-                      opacity: 1, 
-                      x: 0, 
-                      duration: 0.5, 
-                      ease: "power3.out",
-                      clearProps: "transform" // Evita perda de qualidade/borrão na imagem
-                    }
-                )
-                // Entra com Título e Descrição garantindo opacity: 1 no final
-                .fromTo([titleEl, descEl],
-                    { opacity: 0, y: 15 },
-                    { 
-                      opacity: 1, 
-                      y: 0, 
-                      duration: 0.45, 
-                      stagger: 0.08, 
-                      ease: "power3.out",
-                      clearProps: "transform,opacity" // Restaura a renderização limpa do browser
+                }, 0.28)
+
+                // ENTRADA: título letra a letra + imagem + descrição + bordas
+                .add(() => animateTitle(car.title), 0.3)
+                .fromTo(mainImg,
+                    { opacity: 0, x: 45, y: 8, scale: 1.05 },
+                    {
+                        opacity: 1,
+                        x: 0,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.7,
+                        ease: "power3.out",
+                        clearProps: "transform,opacity" // Evita perda de qualidade/borrão na imagem
                     },
-                    "-=0.35"
-                );
+                    0.38
+                )
+                .fromTo(descEl,
+                    { opacity: 0, y: 22 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.6,
+                        ease: "power3.out",
+                        clearProps: "transform,opacity"
+                    },
+                    0.55
+                )
+                .add(() => infoLinesTween(1), 0.62);
         });
     });
 });
